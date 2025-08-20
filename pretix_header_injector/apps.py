@@ -9,7 +9,6 @@ except ImportError:
 class PluginApp(PluginConfig):
     name = "pretix_header_injector"
     verbose_name = "Header Code Injector"
-    urls = "pretix_header_injector.urls"
 
     class PretixPluginMeta:
         name = gettext_lazy("Header Code Injector")
