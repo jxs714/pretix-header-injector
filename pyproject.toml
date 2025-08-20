@@ -1,8 +1,39 @@
-[project.entry-points."distutils.commands"]
-build = "pretix_plugin_build.build:CustomBuild"
+[project]
+name = "pretix-header-injector"
+dynamic = ["version"]
+description = "Inject any script into pretix header for analytics etc"
+readme = "README.rst"
+license = {text = "Apache"}
+keywords = ["pretix"]
+authors = [
+    {name = "Fueled By X", email = "none@none.com"},
+]
+maintainers = [
+    {name = "Fueled By X", email = "none@none.com"},
+]
+
+dependencies = [
+]
+
+[project.entry-points."pretix.plugin"]
+pretix_header_injector = "pretix_header_injector:PretixPluginMeta"
 
 [build-system]
 requires = [
     "setuptools",
-    "pretix-plugin-build",
 ]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+homepage = "https://github.com/jxs714/pretix-header-injector"
+repository = "https://github.com/jxs714/pretix-header-injector"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = "pretix_header_injector.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["pretix*"]
+namespaces = false
