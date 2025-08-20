@@ -2,11 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='pretix-header-injector',
-    version='4.0.0', # Final version
+    version='5.0.0', # Final, working version
     description='A pretix plugin to inject custom code into the HTML head.',
     author='Your Name',
     author_email='your.email@example.com',
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests', 'tests.*']),
     include_package_data=True,
     entry_points="""
 [pretix.plugin]
