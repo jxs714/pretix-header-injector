@@ -1,5 +1,0 @@
-[plugin]
-package = "pretix-header-injector"
-modules = [ "pretix_header_injector" ]
-marketplace_name = "header-injector"
-
