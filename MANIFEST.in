@@ -1,8 +1,0 @@
-include README.rst
-include README.md
-include LICENSE
-recursive-include pretix_header_injector/static *
-recursive-include pretix_header_injector/templates *
-recursive-include pretix_header_injector/locale *
-global-exclude __pycache__
-global-exclude *.py[co]
