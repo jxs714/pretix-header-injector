@@ -1,5 +1,0 @@
-recursive-include pretix_header_injector/static *
-recursive-include pretix_header_injector/templates *
-recursive-include pretix_header_injector/locale *
-include LICENSE
-exclude .gitlab-ci.yml
