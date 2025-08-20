@@ -1,7 +1,5 @@
 from django.utils.translation import gettext_lazy
 
-from . import __version__
-
 try:
     from pretix.base.plugins import PluginConfig
 except ImportError:
@@ -9,20 +7,18 @@ except ImportError:
 
 
 class PluginApp(PluginConfig):
-    default = True
     name = "pretix_header_injector"
-    verbose_name = "Pretix Header Injector"
+    verbose_name = "Header Code Injector"
+    urls = "pretix_header_injector.urls"
 
     class PretixPluginMeta:
-        name = gettext_lazy("Pretix Header Injector")
-        author = "Fueled By X"
-        description = gettext_lazy("Inject any script into pretix header for analytics etc")
+        name = gettext_lazy("Header Code Injector")
+        author = "Your Name"
+        description = gettext_lazy("Injects custom code into the HTML head of event pages.")
         visible = True
-        version = __version__
+        version = "1.0.0"
         category = "CUSTOMIZATION"
         compatibility = "pretix>=2.7.0"
-        settings_links = []
-        navigation_links = []
 
     def ready(self):
         from . import signals  # NOQA
