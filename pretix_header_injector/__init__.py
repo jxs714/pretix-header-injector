@@ -8,7 +8,7 @@ class HeaderInjectorApp(AppConfig):
     class PretixPluginMeta:
         name = _('Header Code Injector')
         author = _('Your Name')
-        version = '3.0.0' # Final version
+        version = '4.0.0'
         description = _('Injects custom code into the HTML head of event pages.')
         visible = True
         category = 'CUSTOMIZATION'
