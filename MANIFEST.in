@@ -1,1 +1,0 @@
-recursive-include pretix_header_injector/templates *
