@@ -1,30 +1,62 @@
-{% extends "pretixcontrol/event/settings_base.html" %}
-{% load i18n bootstrap3 %}
-{% block title %}{% trans "Header Code Injector" %}{% endblock %}
-{% block inside %}
-    <form action="" method="post" class="form-horizontal">
-        {% csrf_token %}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    {% trans "Header Code Injector" %}
-                </h3>
-            </div>
-            <div class="panel-body">
-                <p>
-                    {% blocktrans trimmed %}
-                        Here you can add custom HTML code that will be injected into the &lt;head&gt;
-                        section of all pages of your event. This is useful for adding tracking
-                        scripts like Google Analytics or Meta Pixel.
-                    {% endblocktrans %}
-                </p>
-                {% bootstrap_form form layout='horizontal' %}
-            </div>
+{% extends "pretixcontrol/event/base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}{% trans "Header Injector" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Header Injector Settings" %}</h1>
+
+<form method="post" class="form-horizontal">
+    {% csrf_token %}
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{% trans "Custom Header Code" %}</h3>
         </div>
-        <div class="form-group submit-group">
-            <button type="submit" class="btn btn-primary btn-save">
-                {% trans "Save" %}
-            </button>
+        <div class="panel-body">
+            <p class="text-muted">
+                {% trans "Use this plugin to inject custom HTML, CSS, or JavaScript code into the header of your event pages. This code will be added to every page." %}
+            </p>
+            <p class="text-warning">
+                <strong>{% trans "Warning:" %}</strong> {% trans "Only add code from trusted sources. Malicious code could compromise your event security." %}
+            </p>
+            
+            {% bootstrap_form form layout='horizontal' %}
         </div>
-    </form>
+    </div>
+    
+    <div class="form-group submit-group">
+        <button type="submit" class="btn btn-primary btn-lg">
+            {% trans "Save" %}
+        </button>
+    </div>
+</form>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{% trans "Usage Examples" %}</h3>
+    </div>
+    <div class="panel-body">
+        <h4>{% trans "Add Google Analytics:" %}</h4>
+        <pre><code>&lt;script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_TRACKING_ID');
+&lt;/script&gt;</code></pre>
+        
+        <h4>{% trans "Add Custom CSS:" %}</h4>
+        <pre><code>&lt;style&gt;
+  .pretix-container {
+    background-color: #f0f0f0;
+  }
+&lt;/style&gt;</code></pre>
+        
+        <h4>{% trans "Add Meta Tags:" %}</h4>
+        <pre><code>&lt;meta name="author" content="Your Name"&gt;
+&lt;meta name="description" content="Your event description"&gt;</code></pre>
+    </div>
+</div>
 {% endblock %}
