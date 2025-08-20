@@ -10,5 +10,4 @@ def header_injector_html_head(sender, request, **kwargs):
     code = sender.settings.get('header_injector_code')
     if code:
         return mark_safe(code)
-    return ""# Register your receivers here
-
+    return ""
