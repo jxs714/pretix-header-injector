@@ -1,20 +1,24 @@
 from django.apps import AppConfig
 from django.utils.translation import gettext_lazy as _
 
-class HeaderInjectorApp(AppConfig):
+
+class PluginApp(AppConfig):
     name = 'pretix_header_injector'
-    verbose_name = 'Header Code Injector'
+    verbose_name = 'Pretix Header Injector'
 
     class PretixPluginMeta:
-        name = _('Header Code Injector')
+        name = _('Header Injector')
         author = 'Your Name'
-        version = '1.0.0'
-        description = _('Injects custom code into the HTML head of event pages.')
+        description = _('Embed any code into Pretix header event pages')
         visible = True
+        version = '1.0.0'
         category = 'CUSTOMIZATION'
-        featured = False
+        compatibility = "pretix>=3.0.0"
 
     def ready(self):
-        from . import signals  # NOQA
+        from . import signals  # noqa
 
-default_app_config = 'pretix_header_injector.HeaderInjectorApp'
+
+# Make PretixPluginMeta available at module level for entry point
+PretixPluginMeta = PluginApp.PretixPluginMeta
+default_app_config = 'pretix_header_injector.PluginApp'
